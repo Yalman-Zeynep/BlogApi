@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Lenovo\\source\\repos\\BlogAPi\\BlogAPi.csproj": {}
+    "C:\\Users\\Lenovo\\Documents\\GitHub\\BlogApi\\BlogAPi\\BlogAPi.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Lenovo\\source\\repos\\BlogAPi\\BlogAPi.csproj": {
+    "C:\\Users\\Lenovo\\Documents\\GitHub\\BlogApi\\BlogAPi\\BlogAPi.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Lenovo\\source\\repos\\BlogAPi\\BlogAPi.csproj",
+        "projectUniqueName": "C:\\Users\\Lenovo\\Documents\\GitHub\\BlogApi\\BlogAPi\\BlogAPi.csproj",
         "projectName": "BlogAPi",
-        "projectPath": "C:\\Users\\Lenovo\\source\\repos\\BlogAPi\\BlogAPi.csproj",
+        "projectPath": "C:\\Users\\Lenovo\\Documents\\GitHub\\BlogApi\\BlogAPi\\BlogAPi.csproj",
         "packagesPath": "C:\\Users\\Lenovo\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Lenovo\\source\\repos\\BlogAPi\\obj\\",
+        "outputPath": "C:\\Users\\Lenovo\\Documents\\GitHub\\BlogApi\\BlogAPi\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Lenovo\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -46,6 +46,14 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "dependencies": {
+            "Microsoft.AspNetCore.Authentication.JwtBearer": {
+              "target": "Package",
+              "version": "[8.0.7, )"
+            },
+            "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[8.0.7, )"
+            },
             "Microsoft.EntityFrameworkCore": {
               "target": "Package",
               "version": "[8.0.7, )"
@@ -63,6 +71,10 @@
             "Swashbuckle.AspNetCore": {
               "target": "Package",
               "version": "[6.4.0, )"
+            },
+            "System.IdentityModel.Tokens.Jwt": {
+              "target": "Package",
+              "version": "[8.0.1, )"
             }
           },
           "imports": [

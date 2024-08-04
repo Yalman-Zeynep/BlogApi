@@ -4,7 +4,7 @@
     using BlogAPi.Models;
     using Microsoft.EntityFrameworkCore;
     using System.Collections.Generic;
-
+    using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 
     public class BlogContext : DbContext
     {
