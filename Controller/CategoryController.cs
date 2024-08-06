@@ -3,6 +3,7 @@ using BlogProject.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.Text.Json;
 
 
 // API için rotayı tanımlıyoruz ve ApiController özelliğini belirtiyoruz
@@ -50,6 +51,8 @@ namespace BlogProject.Controller
         [HttpPost]
         public async Task<ActionResult<Category>> PostCategory(Category category)
         {
+            
+
             // Yeni kategori objesini veritabanına ekler
             _context.Category.Add(category);
             await _context.SaveChangesAsync();
@@ -58,7 +61,9 @@ namespace BlogProject.Controller
             return CreatedAtAction(nameof(GetCategory), new { id = category.Id }, category);
         }
 
-        // Varolan bir kategoriyi güncellemek için PUT isteği
+
+
+
         [HttpPut("{id}")]
         public async Task<IActionResult> PutCategory(int id, Category category)
         {
