@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BlogProject.Migrations
 {
     [DbContext(typeof(BlogContext))]
-    [Migration("20240805151720_newMigration")]
-    partial class newMigration
+    [Migration("20240806130919_InitialCreate")]
+    partial class InitialCreate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -96,7 +96,7 @@ namespace BlogProject.Migrations
                     b.ToTable("AspNetUsers", (string)null);
                 });
 
-            modelBuilder.Entity("BlogProject.Models.Auther", b =>
+            modelBuilder.Entity("BlogProject.Models.Author", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -110,15 +110,12 @@ namespace BlogProject.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Password")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("Surname")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Auther");
+                    b.ToTable("Author");
                 });
 
             modelBuilder.Entity("BlogProject.Models.Blog", b =>
@@ -128,9 +125,6 @@ namespace BlogProject.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<int?>("AutherId")
-                        .HasColumnType("int");
 
                     b.Property<int>("AuthorId")
                         .HasColumnType("int");
@@ -155,7 +149,7 @@ namespace BlogProject.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("AutherId");
+                    b.HasIndex("AuthorId");
 
                     b.HasIndex("CategoryId");
 
@@ -313,9 +307,11 @@ namespace BlogProject.Migrations
 
             modelBuilder.Entity("BlogProject.Models.Blog", b =>
                 {
-                    b.HasOne("BlogProject.Models.Auther", "Auther")
+                    b.HasOne("BlogProject.Models.Author", "Author")
                         .WithMany("Blogs")
-                        .HasForeignKey("AutherId");
+                        .HasForeignKey("AuthorId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("BlogProject.Models.Category", "Category")
                         .WithMany("Blogs")
@@ -323,7 +319,7 @@ namespace BlogProject.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Auther");
+                    b.Navigation("Author");
 
                     b.Navigation("Category");
                 });
@@ -379,7 +375,7 @@ namespace BlogProject.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("BlogProject.Models.Auther", b =>
+            modelBuilder.Entity("BlogProject.Models.Author", b =>
                 {
                     b.Navigation("Blogs");
                 });

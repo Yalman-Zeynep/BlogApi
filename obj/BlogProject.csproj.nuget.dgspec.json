@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Lenovo\\source\\repos\\BlogProject\\BlogProject.csproj": {}
+    "C:\\Users\\Lenovo\\Documents\\GitHub\\BlogApi\\BlogProject.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Lenovo\\source\\repos\\BlogProject\\BlogProject.csproj": {
+    "C:\\Users\\Lenovo\\Documents\\GitHub\\BlogApi\\BlogProject.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Lenovo\\source\\repos\\BlogProject\\BlogProject.csproj",
+        "projectUniqueName": "C:\\Users\\Lenovo\\Documents\\GitHub\\BlogApi\\BlogProject.csproj",
         "projectName": "BlogProject",
-        "projectPath": "C:\\Users\\Lenovo\\source\\repos\\BlogProject\\BlogProject.csproj",
+        "projectPath": "C:\\Users\\Lenovo\\Documents\\GitHub\\BlogApi\\BlogProject.csproj",
         "packagesPath": "C:\\Users\\Lenovo\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Lenovo\\source\\repos\\BlogProject\\obj\\",
+        "outputPath": "C:\\Users\\Lenovo\\Documents\\GitHub\\BlogApi\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Lenovo\\AppData\\Roaming\\NuGet\\NuGet.Config",

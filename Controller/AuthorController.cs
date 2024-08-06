@@ -5,35 +5,35 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 // API için rotayı tanımlıyoruz ve ApiController özelliğini belirtiyoruz
-namespace BlogProject.Controller
+namespace BlogProject.Controllers
 {
     [Route("api/[controller]")] // API'nin rotasını belirler. Burada, controller adı otomatik olarak kullanılır.
     [ApiController] // API controller'ı olarak işaretler, model doğrulama ve JSON dönüşüm gibi işlemleri otomatik olarak yapar.
-    public class AutherController : ControllerBase
+    public class AuthorController : ControllerBase
     {
         // BlogContext veritabanı bağlamını tanımlıyoruz
         private readonly BlogContext _context;
 
         // Constructor, veritabanı bağlamını enjeksiyonla alır
-        public AutherController(BlogContext context)
+        public AuthorController(BlogContext context)
         {
             _context = context;
         }
 
         // Tüm yazarları listelemek için GET isteği
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Auther>>> GetAuthors()
+        public async Task<ActionResult<IEnumerable<Author>>> GetAuthors()
         {
             // Veritabanından tüm yazarları alır ve liste olarak döner
-            return await _context.Auther.ToListAsync();
+            return await _context.Author.ToListAsync();
         }
 
         // Belirli bir yazarı ID ile almak için GET isteği
         [HttpGet("{id}")]
-        public async Task<ActionResult<Auther>> GetAuthor(int id)
+        public async Task<ActionResult<Author>> GetAuthor(int id)
         {
             // Veritabanında verilen ID'ye sahip yazarı bulur
-            var author = await _context.Auther.FindAsync(id);
+            var author = await _context.Author.FindAsync(id);
 
             // Yazar bulunamazsa 404 Not Found döner
             if (author == null)
@@ -47,24 +47,34 @@ namespace BlogProject.Controller
 
         // Yeni bir yazar eklemek için POST isteği
         [HttpPost]
-        public async Task<ActionResult<Auther>> PostAuthor(Auther auther)
+        public async Task<ActionResult<Author>> PostAuthor(Author author)
         {
+            if (author == null || string.IsNullOrEmpty(author.Name) || string.IsNullOrEmpty(author.Surname) || string.IsNullOrEmpty(author.Email))
+            {
+                return BadRequest("Author fields are required.");
+            }
+
             // Yeni yazar objesini veritabanına ekler
-            _context.Auther.Add(auther);
+            _context.Author.Add(author);
             await _context.SaveChangesAsync();
 
             // Yeni yazar oluşturulduktan sonra, oluşturulan yazarı ve onun URL'sini döner
-            return CreatedAtAction(nameof(GetAuthor), new { id = auther.Id }, auther);
+            return CreatedAtAction(nameof(GetAuthor), new { id = author.Id }, author);
         }
 
         // Varolan bir yazarı güncellemek için PUT isteği
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutAuthor(int id, Auther author)
+        public async Task<IActionResult> PutAuthor(int id, Author author)
         {
             // ID'ler eşleşmiyorsa 400 Bad Request döner
             if (id != author.Id)
             {
                 return BadRequest();
+            }
+
+            if (author == null || string.IsNullOrEmpty(author.Name) || string.IsNullOrEmpty(author.Surname) || string.IsNullOrEmpty(author.Email))
+            {
+                return BadRequest("Author fields are required.");
             }
 
             // Yazar objesinin durumunu değiştirilmiş olarak işaretler
@@ -97,7 +107,7 @@ namespace BlogProject.Controller
         public async Task<IActionResult> DeleteAuthor(int id)
         {
             // Veritabanında verilen ID'ye sahip yazarı bulur
-            var author = await _context.Auther.FindAsync(id);
+            var author = await _context.Author.FindAsync(id);
             if (author == null)
             {
                 // Yazar bulunamazsa 404 Not Found döner
@@ -105,7 +115,7 @@ namespace BlogProject.Controller
             }
 
             // Yazar objesini veritabanından kaldırır
-            _context.Auther.Remove(author);
+            _context.Author.Remove(author);
             await _context.SaveChangesAsync();
 
             // Başarılı silme durumunda 204 No Content döner
@@ -115,7 +125,8 @@ namespace BlogProject.Controller
         // Verilen ID ile yazarın var olup olmadığını kontrol eder
         private bool AuthorExists(int id)
         {
-            return _context.Auther.Any(e => e.Id == id);
+            return _context.Author.Any(e => e.Id == id);
         }
     }
 }
+

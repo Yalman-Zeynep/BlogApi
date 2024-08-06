@@ -27,7 +27,7 @@ namespace BlogProject.Controller
             {
                 var user = new ApplicationUser
                 {
-                    UserName = model.Email,
+                    UserName = model.Username,
                     Email = model.Email,
                     Name = model.Name,
                     Surname = model.Surname
@@ -86,6 +86,7 @@ namespace BlogProject.Controller
     {
         public string? Name { get; set; }
         public string? Surname { get; set; }
+        public string? Username { get; set; }
         public string? Email { get; set; }
         public string? Password { get; set; }
     }

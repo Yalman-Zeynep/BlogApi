@@ -27,7 +27,7 @@ namespace BlogProject.Controller
         {
             // Veritabanından tüm blog yazılarını ve ilişkili yazar ve kategori bilgilerini alır ve liste olarak döner
             return await _context.Blog
-                .Include(b => b.Auther)   // Blog yazılarıyla ilişkili yazarları da içerir
+                .Include(b => b.Author)   // Blog yazılarıyla ilişkili yazarları da içerir
                 .Include(b => b.Category) // Blog yazılarıyla ilişkili kategorileri de içerir
                 .ToListAsync();
         }
@@ -38,7 +38,7 @@ namespace BlogProject.Controller
         {
             // Veritabanında verilen ID'ye sahip blog yazısını ve ilişkili yazar ve kategori bilgilerini bulur
             var blog = await _context.Blog
-                .Include(b => b.Auther)
+                .Include(b => b.Author)
                 .Include(b => b.Category)
                 .FirstOrDefaultAsync(b => b.Id == id);
 
