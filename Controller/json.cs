@@ -2,7 +2,7 @@
 
 namespace BlogProject.Controller
 {
-    internal class json
+    internal class Json
     {
         internal static Stream GetRawText()
         {

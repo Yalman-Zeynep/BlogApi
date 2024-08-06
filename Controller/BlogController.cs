@@ -26,9 +26,9 @@ namespace BlogProject.Controller
         public async Task<ActionResult<IEnumerable<Blog>>> GetBlogs()
         {
             // Veritabanından tüm blog yazılarını ve ilişkili yazar ve kategori bilgilerini alır ve liste olarak döner
-            return await _context.Blog
-                .Include(b => b.Author)   // Blog yazılarıyla ilişkili yazarları da içerir
-                .Include(b => b.Category) // Blog yazılarıyla ilişkili kategorileri de içerir
+            return await _context.Blogs
+               // .Include(b => b.Author)   // Blog yazılarıyla ilişkili yazarları da içerir
+                //.Include(b => b.Category) // Blog yazılarıyla ilişkili kategorileri de içerir
                 .ToListAsync();
         }
 
@@ -37,9 +37,9 @@ namespace BlogProject.Controller
         public async Task<ActionResult<Blog>> GetBlog(int id)
         {
             // Veritabanında verilen ID'ye sahip blog yazısını ve ilişkili yazar ve kategori bilgilerini bulur
-            var blog = await _context.Blog
-                .Include(b => b.Author)
-                .Include(b => b.Category)
+            var blog = await _context.Blogs
+                //.Include(b => b.Author)
+                //.Include(b => b.Category)
                 .FirstOrDefaultAsync(b => b.Id == id);
 
             // Blog yazısı bulunamazsa 404 Not Found döner
@@ -57,7 +57,7 @@ namespace BlogProject.Controller
         public async Task<ActionResult<Blog>> PostBlog(Blog blog)
         {
             // Yeni blog objesini veritabanına ekler
-            _context.Blog.Add(blog);
+            _context.Blogs.Add(blog);
             // Değişiklikleri veritabanına kaydeder
             await _context.SaveChangesAsync();
 
@@ -106,7 +106,7 @@ namespace BlogProject.Controller
         public async Task<IActionResult> DeleteBlog(int id)
         {
             // Veritabanında verilen ID'ye sahip blog yazısını bulur
-            var blog = await _context.Blog.FindAsync(id);
+            var blog = await _context.Blogs.FindAsync(id);
             if (blog == null)
             {
                 // Blog yazısı bulunamazsa 404 Not Found döner
@@ -114,7 +114,7 @@ namespace BlogProject.Controller
             }
 
             // Blog objesini veritabanından kaldırır
-            _context.Blog.Remove(blog);
+            _context.Blogs.Remove(blog);
             // Değişiklikleri veritabanına kaydeder
             await _context.SaveChangesAsync();
 
@@ -126,7 +126,7 @@ namespace BlogProject.Controller
         private bool BlogExists(int id)
         {
             // Veritabanında verilen ID'ye sahip bir blog yazısının var olup olmadığını kontrol eder
-            return _context.Blog.Any(e => e.Id == id);
+            return _context.Blogs.Any(e => e.Id == id);
         }
     }
 }
